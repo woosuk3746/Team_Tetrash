@@ -10,7 +10,7 @@ public class QQKachoo<D> implements Deque<D>
     private DLLNode<D> _last;
 
     //constructor
-    public QQKachoo<D>(){
+    public QQKachoo(){
 	_size = 0;
 	_first = _last = null;
     }
@@ -23,7 +23,7 @@ public class QQKachoo<D> implements Deque<D>
 	}
 	else{
 	    _first.setPrev( new DLLNode<D>( thing, null, _first ) );
-	    _first = _first.getPrev;
+	    _first = _first.getPrev();
 	}
 	_size++;
 	
@@ -36,32 +36,47 @@ public class QQKachoo<D> implements Deque<D>
 	}
 	else{
 	    _last.setNext( new DLLNode<D>( thing, _last, null ) );
-	    _last = _last.getNext;
+	    _last = _last.getNext();
 	}
 	_size++;
     }
 
     public D removeFirst(){
-	D thisD = _first.getValue();
+	D thisD = _first.getCargo();
 	_first.getNext().setPrev(null);
 	_first = _first.getNext();
 	return thisD;
     }
 
     public D removeLast(){
-	D thisD = _last.getValue();
+	D thisD = _last.getCargo();
 	_last.getPrev().setNext(null);
 	_last = _last.getPrev();
 	return thisD;
     }
 
     public D getFirst(){
-	return _first.getValue();
+	return _first.getCargo();
     }
 
     public D getLast(){
-	return _last.getValue();
+	return _last.getCargo();
     }
 
     public boolean isEmpty(){ return _size==0; }
+
+    public static void p(Object o) { System.out.println(o);}
+
+    public static void main(String[] args ){
+	Deque<String> q = new QQKachoo<String>();
+	q.addFirst("me");
+	q.addFirst("no");
+	q.addLast("you");
+	
+	p(q.getFirst()); //no	
+	p(q.getLast()); //you
+
+	q.removeFirst();
+	p(q.getFirst()); //me
+    }
 }
