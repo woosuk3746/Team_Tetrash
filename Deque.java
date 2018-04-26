@@ -11,4 +11,6 @@ public interface Deque<Card>
     public Card getFirst();
 
     public Card getLast();
+
+    public int size();
 }
